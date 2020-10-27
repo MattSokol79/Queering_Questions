@@ -28,8 +28,16 @@ Response:
 Q4 - Select all of the entries where the Company Name has a 'z' or a 'Z' in the table of Customers
 Query:
 ```sql
-
+SELECT CompanyName FROM Customers WHERE CompanyName LIKE '%z%' OR CompanyName LIKE '%Z%'
 ```
 
 Response:
+6
+Centro comercial Moctezuma
+Lazy K Kountry Store
+Magazzini Alimentari Riuniti
+Queen Cozinha
+Toms Spezialitäten
+Wolski  Zajazd
 
+Q5 - 

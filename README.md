@@ -1,3 +1,5 @@
+# Query Tasks on the Northwind Database
+
 Q1 - How many orders in NWDB?
 Query:
 ```sql
@@ -40,4 +42,20 @@ Queen Cozinha
 Toms Spezialitäten
 Wolski  Zajazd
 
-Q5 - 
+Q5 - We need to update all of our FAX information! This Day and age it is a must! Find me the Name of All of the companies that we 
+do not have their FAX numbers! I would also like to know with whom I need to speak with, their contact numbers and what city 
+they are base in.
+Query:
+```sql
+SELECT CompanyName, ContactName, Phone, City, Fax FROM Suppliers WHERE Fax IS NULL;
+```
+
+Response: 16 names etc.
+
+Q6 - Re-target all Customers in Paris! Get information on these clients
+Query:
+```sql
+SELECT * FROM Customers WHERE City = 'Paris';
+``` 
+
+Response: 2 clients with details

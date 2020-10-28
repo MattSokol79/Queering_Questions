@@ -59,3 +59,45 @@ SELECT * FROM Customers WHERE City = 'Paris';
 ``` 
 
 Response: 2 clients with details
+
+## Q7 - Find out from the clients in Paris which one orders the most by quantity? Top 5 clients?
+Query:
+```sql
+SELECT 
+    TOP 5 COUNT(Orders.OrderID) AS 'No. of Orders',
+    Customers.CompanyName
+FROM Customers
+LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+WHERE Customers.City = 'Paris'
+GROUP BY Customers.CompanyName
+ORDER BY COUNT(Orders.OrderID) DESC;
+```
+
+Response:
+2 clients
+
+
+## Q8 - Find out for which clients deliveries took more than 10 days. Display the client name, contact name, all their contact details, fax as well as the number of deliveries that were overdue. Add a column named 'Number of overdue orders'.
+Query:
+```sql
+SELECT TOP 5
+    Customers.CustomerID,
+    Customers.CompanyName,
+    Customers.ContactName,
+    Customers.Phone,
+    Customers.Fax,
+    Customers.Address,
+    COUNT(Orders.OrderID) AS 'Overdue Orders'
+FROM Customers
+INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+INNER JOIN [Order Details] ON Orders.OrderID = [Order Details].OrderID
+WHERE Orders.RequiredDate - Orders.ShippedDate > 10
+GROUP BY
+    Customers.CustomerID,
+    Customers.CompanyName,
+    Customers.ContactName,
+    Customers.Phone,
+    Customers.Address,
+    Customers.Fax
+ORDER BY COUNT(Orders.OrderID) DESC;
+```

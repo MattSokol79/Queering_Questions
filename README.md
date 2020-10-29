@@ -81,23 +81,22 @@ Response:
 Query:
 ```sql
 SELECT TOP 5
-    Customers.CustomerID,
-    Customers.CompanyName,
-    Customers.ContactName,
-    Customers.Phone,
-    Customers.Fax,
-    Customers.Address,
-    COUNT(Orders.OrderID) AS 'Overdue Orders'
-FROM Customers
-INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID
-INNER JOIN [Order Details] ON Orders.OrderID = [Order Details].OrderID
-WHERE Orders.RequiredDate - Orders.ShippedDate > 10
+    cu.CustomerID,
+    cu.CompanyName,
+    cu.ContactName,
+    cu.Phone,
+    cu.Fax,
+    cu.Address,
+    COUNT(o.OrderID) AS 'Overdue Orders'
+FROM Customers cu
+INNER JOIN Orders o ON cu.CustomerID = o.CustomerID
+WHERE o.RequiredDate - o.ShippedDate > 10
 GROUP BY
-    Customers.CustomerID,
-    Customers.CompanyName,
-    Customers.ContactName,
-    Customers.Phone,
-    Customers.Address,
-    Customers.Fax
-ORDER BY COUNT(Orders.OrderID) DESC;
+    cu.CustomerID,
+    cu.CompanyName,
+    cu,ContactName,
+    cu.Phone,
+    cu.Address,
+    cu.Fax
+ORDER BY COUNT(o.OrderID) DESC;
 ```

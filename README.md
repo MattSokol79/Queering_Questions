@@ -94,7 +94,7 @@ WHERE o.RequiredDate - o.ShippedDate > 10
 GROUP BY
     cu.CustomerID,
     cu.CompanyName,
-    cu,ContactName,
+    cu.ContactName,
     cu.Phone,
     cu.Address,
     cu.Fax
